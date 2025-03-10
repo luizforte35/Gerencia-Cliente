@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.gerenciacliente.ui.Client;
+import com.example.gerenciacliente.ui.ClientAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -13,17 +15,31 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gerenciacliente.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
 	private AppBarConfiguration mAppBarConfiguration;
 	private ActivityMainBinding binding;
+	private RecyclerView recyclerView;
+	private ClientAdapter adapter;
+	private List<Client> clientList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		recyclerView = findViewById(R.id.my_recycler_view); // Your RecyclerView ID
+
+
+		adapter = new ClientAdapter(this, clientList);
+		recyclerView.setAdapter(adapter);
 
 		binding = ActivityMainBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
